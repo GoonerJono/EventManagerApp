@@ -21,7 +21,7 @@ user: User = {
     console.log(user);
     this.loginService.Login(user).subscribe(r =>{
       console.log(r);
-      this.router.navigate(['/detail', { id: r }]);
+      this.router.navigate(['detail', { id: r }]);
     });
   }
 
