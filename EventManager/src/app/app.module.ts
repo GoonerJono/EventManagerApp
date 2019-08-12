@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './services/login/login.service';
+import { UserService } from './services/user/user.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,7 @@ import { LoginService } from './services/login/login.service';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, LoginService
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, LoginService, UserService
   ],
   bootstrap: [AppComponent]
 })

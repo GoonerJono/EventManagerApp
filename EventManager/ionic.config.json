@@ -1,5 +1,11 @@
 {
   "name": "EventManager",
   "integrations": {},
-  "type": "angular"
+  "type": "angular",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "https://localhost:44346/api"
+    }
+  ]
 }

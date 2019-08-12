@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title >
+          Register
+        </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+      <ion-item>
+        <ion-label>First Name</ion-label>
+        <ion-input [(ngModel)]="user.name" placeholder="Person First name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Last Name</ion-label>
+        <ion-input [(ngModel)]="user.surname" placeholder="Person Last Name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input [(ngModel)]="user.email" placeholder="email Address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Cell number</ion-label>
+        <ion-input [(ngModel)]="user.cellphoneNumber" placeholder="Cell Phone number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Gender</ion-label>
+        <ion-input [(ngModel)]="user.gender" placeholder="Gender"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Date Of Birth</ion-label>
+        <ion-datetime [(ngModel)]="user.birthDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+          <ion-label>Username</ion-label>
+          <ion-input [(ngModel)]="user.username" placeholder="Username"></ion-input>
+        </ion-item>
+      <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input [(ngModel)]="user.password" type="password" placeholder="password"></ion-input>
+      </ion-item>
+      <ion-button color="primary" shape="block" (click)="create(user)">Create</ion-button>
+    </ion-content>

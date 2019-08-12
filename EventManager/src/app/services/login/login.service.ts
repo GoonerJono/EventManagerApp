@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/modules/User/user.module';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -14,7 +15,7 @@ const httpOptions = {
 
 export class LoginService {
 
-    apiurl = 'https://localhost:44346/api/login/';
+    apiurl = 'https://localhost:44346/api/Login/';
 
     constructor(private http: HttpClient) {
 
