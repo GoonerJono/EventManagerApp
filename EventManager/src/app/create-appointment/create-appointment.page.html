@@ -1,0 +1,40 @@
+<ion-header>
+  
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>New Ticket</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-content class="ion-padding">
+        <ion-item>
+          <ion-label>Ticket Number:</ion-label>
+          <ion-input [(ngModel)]="appointment.ticketNumber" placeholder="Person First name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Date Of Appointment</ion-label>
+            <ion-datetime [(ngModel)]="appointment.date"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>Type of Service</ion-label>
+          <ion-select [(ngModel)]="appointment.typeOfService" (ngModelChange)="GetOrganizations($event)">
+            <ion-select-option value="{{item.id}}" *ngFor="let item of typeOfService" >{{item.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Organization</ion-label>
+          <ion-select [(ngModel)]="appointment.organizationId" (ngModelChange)="GetConsultant($event)">
+            <ion-select-option value="{{item2.id}}" *ngFor="let item2 of organisation" >{{item2.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Consultant</ion-label>
+          <ion-select [(ngModel)]="appointment.consultantId" >
+            <ion-select-option value="{{item3.id}}" *ngFor="let item3 of consultant" >{{item3.name +' '+ item3.surname}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button color="danger" shape="block" (click)="CreateAppointment(appointment)">Accept</ion-button>
+</ion-content>

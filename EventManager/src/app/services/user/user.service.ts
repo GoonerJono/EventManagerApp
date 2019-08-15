@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { User } from './../../modules/User/user.module';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -17,11 +18,11 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  GetUserDetailsById(id: number) {
-    return this.http.get(this.apiurl + id);
+  GetUserDetailsById(id: number): Observable<User> {
+    return this.http.get<User>(this.apiurl + 'GetUserDetails/' + id);
   }
 
-  CreateNewUser(user: User) {
-    return this.http.post(this.apiurl, user, httpOptions);
+  CreateNewUser(user: User): Observable<number> {
+    return this.http.post<number>(this.apiurl + 'CreateNewUser/', user, httpOptions);
   }
 }

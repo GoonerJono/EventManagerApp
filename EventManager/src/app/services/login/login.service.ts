@@ -21,7 +21,7 @@ export class LoginService {
 
     }
 
-    Login(user: User) {
-        return this.http.post(this.apiurl, user, httpOptions);
+    Login(user: User): Observable<User> {
+        return this.http.post<User>(this.apiurl, user, httpOptions);
     }
 }
