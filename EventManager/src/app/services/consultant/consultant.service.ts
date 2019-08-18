@@ -14,11 +14,11 @@ const httpOptions = {
 })
 export class ConsultantService {
 
-  apiurl = 'https://localhost:44346/api/Organization/';
+  apiurl = 'https://localhost:44346/api/consultant/';
 
   constructor(private http: HttpClient) { }
 
   GetConsultantDetailsOrganizationId(organisationId: number): Observable<Consultant[]> {
-    return this.http.get<Consultant[]>(this.apiurl + '' + organisationId);
+    return this.http.get<Consultant[]>(this.apiurl + 'GetConsultantDetailsOrganizationId/' + organisationId);
   }
 }

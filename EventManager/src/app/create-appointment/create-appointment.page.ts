@@ -8,7 +8,6 @@ import { TypeOfServiceService } from './../services/typeOfService/type-of-servic
 import { Router, ActivatedRoute } from '@angular/router';
 import { Appointment } from 'src/app/modules/Appointment/appointment.module';
 import { Component, OnInit } from '@angular/core';
-import { DatetimeChangeEventDetail } from '@ionic/core';
 
 
 @Component({
@@ -43,10 +42,18 @@ consultant: Consultant[];
     ) { }
 
   ngOnInit() {
-    this.typeOfServiceService.GetTypeOfServices().subscribe(tos => {
-      console.log(tos);
-      this.typeOfService = tos;
-    });
+    // this.typeOfServiceService.GetTypeOfServices().subscribe(tos => {
+    //   console.log(tos);
+    //   this.typeOfService = tos;
+    // });
+    this.consultantService.GetConsultantDetailsOrganizationId(1).subscribe(
+      org => {this.consultant = org;
+              console.log(this.consultant); });
+    // this.organisationService.GetOrganizationsByTypeofService(1).subscribe(
+    //   con => {
+    //     this.organisation = con;
+    //   }
+    // );
   }
 
   CreateAppointment(appointment) {
@@ -56,19 +63,19 @@ consultant: Consultant[];
 
   GetConsultant($event) {
     this.consultantid = $event;
-    this.consultantService.GetConsultantDetailsOrganizationId($event).subscribe(
-      org => {this.consultant = org;
-              console.log(this.consultant); }
-   );
+  //   this.consultantService.GetConsultantDetailsOrganizationId($event).subscribe(
+  //     org => {this.consultant = org;
+  //             console.log(this.consultant); }
+  //  );
   }
 
   GetOrganizations($event) {
    this.organisationid  = $event;
    console.log(this.organisationid);
-   this.organisationService.GetOrganizationsByTypeofService(this.organisationid).subscribe(
-      org => {this.organisation = org;
-              console.log(this.organisation); }
-   );
+  //  this.organisationService.GetOrganizationsByTypeofService(this.organisationid).subscribe(
+  //     org => {this.organisation = org;
+  //             console.log(this.organisation); }
+  //  );
   }
 
 }
