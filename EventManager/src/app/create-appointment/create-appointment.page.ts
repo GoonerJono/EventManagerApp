@@ -16,16 +16,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-appointment.page.scss'],
 })
 export class CreateAppointmentPage implements OnInit {
+id: number;
 organisationid: number;
 consultantid: number;
 appointment: Appointment = {
   id: undefined,
   ticketNumber: '',
-  typeOfService: undefined,
+  typeOfServiceId: undefined,
   date: undefined,
   organizationId: undefined,
   userId: undefined,
-  consultantId: undefined
+  consultantId: undefined,
+  user: undefined,
+  organization: undefined,
+  consultant: undefined
+
 };
 todaysDate =  Date.now();
 typeOfService: TypeOfService[];
@@ -42,40 +47,38 @@ consultant: Consultant[];
     ) { }
 
   ngOnInit() {
-    // this.typeOfServiceService.GetTypeOfServices().subscribe(tos => {
-    //   console.log(tos);
-    //   this.typeOfService = tos;
-    // });
-    this.consultantService.GetConsultantDetailsOrganizationId(1).subscribe(
-      org => {this.consultant = org;
-              console.log(this.consultant); });
-    // this.organisationService.GetOrganizationsByTypeofService(1).subscribe(
-    //   con => {
-    //     this.organisation = con;
-    //   }
-    // );
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.typeOfServiceService.GetTypeOfServices().subscribe(
+      TOS => {this.typeOfService = TOS; }
+    );
   }
 
   CreateAppointment(appointment) {
+    appointment.userId = this.id;
     console.log(appointment);
-    // this.appointmentService.CreateNewAppointment(appointment);
+    this.appointmentService.CreateNewAppointment(appointment).subscribe(
+      create => {if ( create === 1 ) {
+        this.router.navigate(['details', { id: this.id }]);
+      }}
+    );
+    // this.router.navigate(['details', { id: this.id }]);
   }
 
   GetConsultant($event) {
     this.consultantid = $event;
-  //   this.consultantService.GetConsultantDetailsOrganizationId($event).subscribe(
-  //     org => {this.consultant = org;
-  //             console.log(this.consultant); }
-  //  );
+    this.consultantService.GetConsultantDetailsOrganizationId($event).subscribe(
+      org => {this.consultant = org;
+              console.log(this.consultant); }
+   );
   }
 
   GetOrganizations($event) {
    this.organisationid  = $event;
    console.log(this.organisationid);
-  //  this.organisationService.GetOrganizationsByTypeofService(this.organisationid).subscribe(
-  //     org => {this.organisation = org;
-  //             console.log(this.organisation); }
-  //  );
+   this.organisationService.GetOrganizationsByTypeofService(this.organisationid).subscribe(
+      org => {this.organisation = org;
+              console.log(this.organisation); }
+   );
   }
 
 }
