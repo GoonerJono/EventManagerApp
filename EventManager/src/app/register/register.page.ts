@@ -27,8 +27,9 @@ export class RegisterPage implements OnInit {
   }
 
   create(user) {
-    this.userService.CreateNewUser(user).subscribe(r => {console.log(r);
-    if(r === 1) {
+    this.userService.CreateNewUser(user).subscribe(
+      r => {console.log(r);
+      if (r = 1) {
      this.router.navigate(['']);
     }});
   }

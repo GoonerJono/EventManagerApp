@@ -21,4 +21,8 @@ export class TypeOfServiceService {
   GetTypeOfServices(): Observable<TypeOfService[]> {
     return this.http.get<TypeOfService[]>(this.apiurl);
   }
+
+  GetTypeOfServiceById( typeOfServiceid: number): Observable<TypeOfService> {
+    return this.http.get<TypeOfService>(this.apiurl + 'GetTypeOfServiceById' + typeOfServiceid);
+  }
 }

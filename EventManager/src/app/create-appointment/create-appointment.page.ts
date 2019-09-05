@@ -55,6 +55,7 @@ consultant: Consultant[];
 
   CreateAppointment(appointment) {
     appointment.userId = this.id;
+    console.log(this.id);
     console.log(appointment);
     this.appointmentService.CreateNewAppointment(appointment).subscribe(
       create => {if ( create === 1 ) {

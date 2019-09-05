@@ -20,7 +20,7 @@
         </ion-item>
         <ion-item>
           <ion-label>Type of Service</ion-label>
-          <ion-select [(ngModel)]="appointment.typeOfService" (ngModelChange)="GetOrganizations($event)">
+          <ion-select [(ngModel)]="appointment.typeOfServiceId" (ngModelChange)="GetOrganizations($event)">
             <ion-select-option value="{{item.id}}" *ngFor="let item of typeOfService" >{{item.name}}</ion-select-option>
           </ion-select>
         </ion-item>

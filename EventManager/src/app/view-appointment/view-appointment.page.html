@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  <ion-title>Appointment</ion-title>
+</ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="appointment">
+  <ion-label >Appointment ID : {{id}}</ion-label>
+  <ion-label >Appointment ID : {{appointment.ticketNumber}}</ion-label>
+</ion-content>

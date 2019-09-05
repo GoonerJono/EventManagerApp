@@ -26,4 +26,8 @@ export class AppointmentService {
   CreateNewAppointment(appointment: Appointment): Observable<number> {
     return this.htpp.post<number>(this.apiurl + 'CreateNewAppointment/', appointment, httpOptions);
   }
+
+  GetAppointmentByAppointmentId(id: number): Observable<Appointment> {
+    return this.htpp.get<Appointment>(this.apiurl + 'GetAppointment/' + id);
+  }
 }

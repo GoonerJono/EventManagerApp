@@ -23,6 +23,6 @@ export class UserService {
   }
 
   CreateNewUser(user: User): Observable<number> {
-    return this.http.post<number>(this.apiurl + 'CreateNewUser/', user, httpOptions);
+    return this.http.post<number>(this.apiurl, user, httpOptions);
   }
 }

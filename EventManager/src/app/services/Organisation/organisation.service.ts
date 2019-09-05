@@ -21,4 +21,8 @@ export class OrganisationService {
   GetOrganizationsByTypeofService(typeOfServiceId: number): Observable<Organisation[]> {
     return this.http.get<Organisation[]>(this.apiurl + 'GetOrganizationsByTypeofService/' + typeOfServiceId);
   }
+
+  GetOrganizationDetails(organisationId: number): Observable<Organisation> {
+    return this.http.get<Organisation>(this.apiurl + 'GetOrganizationDetails/' + organisationId);
+  }
 }

@@ -10,7 +10,7 @@
 <ion-content class="ion-padding">
   <ion-list>
     <ion-list-header>Tickets</ion-list-header>
-    <ion-item *ngFor="let item of appointment">{{item.ticketNumber}}</ion-item>
+    <ion-item *ngFor="let item of appointment" (click)="ViewDetails(item.id)" >{{item.ticketNumber}}</ion-item>
   </ion-list>
   
   <ion-button color="danger" shape="block" (click)="CreateAppointment()">New Ticket</ion-button>
