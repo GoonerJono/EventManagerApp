@@ -1,6 +1,8 @@
 {
   "name": "EventManager",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "proxies": [
     {

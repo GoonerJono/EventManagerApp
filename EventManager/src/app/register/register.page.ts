@@ -18,7 +18,8 @@ export class RegisterPage implements OnInit {
     cellphoneNumber: undefined,
     birthDate: undefined,
     username: '',
-    password: ''
+    password: '',
+    isVerified: false
   };
 
   constructor(private userService: UserService, private router: Router) { }

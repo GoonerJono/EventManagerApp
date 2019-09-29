@@ -1,3 +1,4 @@
+import { AppointmentDetails } from './../modules/Appointment/appointmentDetails.module';
 import { Consultant } from './../modules/Consultant/consultant.module';
 import { TypeOfService } from './../modules/TypeOfService/typeOfService.module';
 import { Organisation } from './../modules/Organization/organisation.module';
@@ -21,101 +22,35 @@ import { ObjectUnsubscribedError } from 'rxjs';
 export class ViewAppointmentPage implements OnInit {
 
   id: number;
-  ticketNumber: string;
-  appointment: Appointment;
-  user: User = {
+  appointmentDetails: AppointmentDetails = {
     id: undefined,
-    birthDate: undefined,
-    cellphoneNumber: undefined,
-    email: undefined,
-    gender: '',
-    name: '',
-    surname: '',
-    password: '',
-    username: ''
+    ticketNumber: '',
+    date: undefined,
+    typeOfServiceName: '',
+    organizationName: '',
+    userNameSurname: '',
+    consultantNameSurname: '',
+    organizationId: undefined
   };
 
-  organisation: Organisation = {
-    id: undefined,
-    address: undefined,
-    email: undefined,
-    hours: '',
-    name: '',
-    password: '',
-    phoneNumber: undefined,
-    registeredDate: undefined,
-    typeOfServiceId: undefined
-  };
-
-  typeOfService: TypeOfService = {
-    id: undefined,
-    description: '',
-    name: ''
-  };
-
-  consultant: Consultant = {
-    id: undefined,
-    name: '',
-    email: '',
-    dateOfBirth: undefined,
-    gender: '',
-    organisationId: undefined,
-    password: '',
-    phoneNumber: undefined,
-    surname: '',
-    username: ''
-  };
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService,
     private appointmentService: AppointmentService,
-    private router: Router,
-    private typeOfServiceService: TypeOfServiceService,
-    private organisationService: OrganisationService,
-    private consultantService: ConsultantService
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
-    this.appointmentService.GetAppointmentByAppointmentId(this.id).subscribe(app => {
-     this.Map(app);
-     console.log(this.appointment);
-     return this.appointment;
+    this.appointmentService.GetAppointmentDetails(this.id).subscribe(app => {
+     this.appointmentDetails = app;
+     console.log(this.appointmentDetails);
+     return this.appointmentDetails;
    });
-  //  this.id = Number(this.route.snapshot.paramMap.get('id'));
-  //  this.appointmentService.GetAppointmentByAppointmentId(this.id).subscribe(app => {
-  //     this.appointment = app;
-  //     console.log(this.appointment);
-  //   });
-  //  this.consultantService.GetConsultantDetails(this.appointment.consultantId).subscribe(
-  //    con => {
-  //      this.consultant = con;
-  //      console.log(this.consultant);
-  //    }
-  //  );
-  //  this.organisationService.GetOrganizationDetails(this.appointment.organizationId).subscribe(
-  //    org => {
-  //      this.organisation = org;
-  //      console.log(this.organisation);
-  //    }
-  //  );
-  //  this.userService.GetUserDetailsById(this.appointment.userId).subscribe(
-  //    urs => {
-  //      this.user = urs;
-  //      console.log(this.user);
-  //    }
-  //  );
-  //  this.typeOfServiceService.GetTypeOfServiceById(this.appointment.typeOfServiceId).subscribe(
-  //    tos => {
-  //      this.typeOfService = tos;
-  //      console.log(this.typeOfService);
-  //    }
-  //  );
+
   }
 
-  Map(app: Appointment) {
-    this.appointment = app;
-    console.log(this.appointment);
+  ViewOrganizationLocation(organisationid: number) {
+    this.router.navigate(['view-organisation', { id: organisationid }]);
   }
 
 }
