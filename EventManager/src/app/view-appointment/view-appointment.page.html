@@ -7,7 +7,24 @@
 </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="appointment">
-  <ion-label >Appointment ID : {{id}}</ion-label>
-  <ion-label >Appointment ID : {{appointment.ticketNumber}}</ion-label>
+<ion-content *ngIf="appointmentDetails" class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">TicketNumber : {{appointmentDetails.ticketNumber}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Type Of Service : {{appointmentDetails.typeOfServiceName}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating" >Appointment Date :</ion-label>
+    <ion-datetime displayFormat="DD MMM YYYY HH:mm" minuteValues="0,15,30,45" value="{{appointmentDetails.date}}" disabled></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Consultant Name : {{appointmentDetails.consultantNameSurname}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Organization Name : {{appointmentDetails.organizationName}}</ion-label>
+  </ion-item>
+  
+
+  <ion-button color="primary" shape="block" (click)="ViewOrganizationLocation(appointmentDetails.organizationId)">View Organization Location</ion-button>
 </ion-content>

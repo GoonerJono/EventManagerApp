@@ -8,4 +8,10 @@ export class Organisation {
     hours?: string;
     phoneNumber?: string;
     typeOfServiceId?: number;
+    IsVerified?: boolean;
+    City?: string;
+    Suburb?: string;
+    ProvinceId?: number;
+    Longitude?: string;
+    Latitude?: string;
 }

@@ -1,3 +1,4 @@
+import { AppointmentDetails } from './../../modules/Appointment/appointmentDetails.module';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, observable } from 'rxjs';
@@ -30,5 +31,9 @@ export class AppointmentService {
 
   GetAppointmentByAppointmentId(id: number): Observable<Appointment> {
     return this.htpp.get<Appointment>(this.apiurl + 'GetAppointment/' + id);
+  }
+
+  GetAppointmentDetails(id: number): Observable<AppointmentDetails> {
+    return this.htpp.get<AppointmentDetails>(this.apiurl + 'GetAppointmentDetails/' + id);
   }
 }

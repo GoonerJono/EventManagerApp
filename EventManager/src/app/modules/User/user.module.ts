@@ -8,4 +8,5 @@ export class User {
     gender?: string;
     email?: string;
     cellphoneNumber?: number;
+    isVerified?: boolean;
 }
