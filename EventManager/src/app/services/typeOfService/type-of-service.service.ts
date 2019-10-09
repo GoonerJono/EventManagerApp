@@ -14,7 +14,8 @@ const httpOptions = {
 })
 export class TypeOfServiceService {
 
-  apiurl = 'https://localhost:44346/api/TypeOfService/';
+    apiUrl2 = 'http://dynamicprogrammers.co.za/api/TypeOfService/'
+    apiurl = 'https://localhost:44346/api/TypeOfService/';
 
   constructor(private http: HttpClient) { }
 

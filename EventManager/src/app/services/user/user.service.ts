@@ -14,7 +14,8 @@ const httpOptions = {
 })
 export class UserService {
 
-  apiurl = 'https://localhost:44346/api/User/';
+    apiUrl2 = 'http://dynamicprogrammers.co.za/api/User/'
+    apiurl = 'https://localhost:44346/api/User/';
 
   constructor(private http: HttpClient) { }
 

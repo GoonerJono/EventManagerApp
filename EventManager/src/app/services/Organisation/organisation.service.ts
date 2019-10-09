@@ -14,7 +14,8 @@ const httpOptions = {
 })
 export class OrganisationService {
 
-  apiurl = 'https://localhost:44346/api/Organization/';
+    apiUrl2 = 'http://dynamicprogrammers.co.za/api/Organization/'
+    apiurl = 'https://localhost:44346/api/Organization/';
 
   constructor(private http: HttpClient) { }
 

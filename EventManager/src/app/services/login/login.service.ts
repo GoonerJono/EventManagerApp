@@ -16,12 +16,13 @@ const httpOptions = {
 export class LoginService {
 
     apiurl = 'https://localhost:44346/api/Login/';
+    apiUrl2 = 'http://dynamicprogrammers.co.za/api/Login/'
 
     constructor(private http: HttpClient) {
 
     }
 
-    Login(user: User): Observable<User> {
-        return this.http.post<User>(this.apiurl, user, httpOptions);
+    Login(user: User): Observable<number> {
+        return this.http.post<number>(this.apiUrl2, user, httpOptions);
     }
 }

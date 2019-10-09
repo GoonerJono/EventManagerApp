@@ -14,7 +14,8 @@ const httpOptions = {
 })
 export class AppointmentService {
 
-  apiurl = 'https://localhost:44346/api/Appointment/';
+    apiUrl2 = 'http://dynamicprogrammers.co.za/api/Appointment/'
+    apiurl = 'https://localhost:44346/api/Appointment/';
 
 
   constructor(private htpp: HttpClient) { }
