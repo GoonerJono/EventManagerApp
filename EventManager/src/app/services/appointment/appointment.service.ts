@@ -15,25 +15,25 @@ const httpOptions = {
 })
 export class AppointmentService {
 
-    apiUrl2 = 'http://dynamicprogrammers.co.za/api/Appointment/'
-    apiurl = 'https://localhost:44346/api/Appointment/';
+    apiUrl = 'http://dynamicprogrammers.co.za/api/Appointment/';
+    apiurlTest = 'https://localhost:44346/api/Appointment/';
 
 
   constructor(private htpp: HttpClient) { }
 
   GetAppointmentByUserId(id: number): Observable<Appointment[]> {
-    return this.htpp.get<Appointment[]>(this.apiurl + 'GetAppointmentsUserId/' + id);
+    return this.htpp.get<Appointment[]>(this.apiUrl + 'GetAppointmentsUserId/' + id);
   }
 
   CreateNewAppointment(appointment: Appointment): Observable<number> {
-    return this.htpp.post<number>(this.apiurl + 'CreateNewAppointment/', appointment, httpOptions);
+    return this.htpp.post<number>(this.apiUrl + 'CreateNewAppointment/', appointment, httpOptions);
   }
 
   GetAppointmentByAppointmentId(id: number): Observable<Appointment> {
-    return this.htpp.get<Appointment>(this.apiurl + 'GetAppointment/' + id);
+    return this.htpp.get<Appointment>(this.apiUrl + 'GetAppointment/' + id);
   }
 
   GetAppointmentDetails(id: number): Observable<AppointmentDetails> {
-    return this.htpp.get<AppointmentDetails>(this.apiurl + 'GetAppointmentDetails/' + id);
+    return this.htpp.get<AppointmentDetails>(this.apiUrl + 'GetAppointmentDetails/' + id);
   }
 }

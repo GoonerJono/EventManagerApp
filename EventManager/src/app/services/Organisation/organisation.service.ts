@@ -14,16 +14,16 @@ const httpOptions = {
 })
 export class OrganisationService {
 
-    apiUrl2 = 'http://dynamicprogrammers.co.za/api/Organization/'
-    apiurl = 'https://localhost:44346/api/Organization/';
+    apiUrl = 'http://dynamicprogrammers.co.za/api/Organization/';
+    apiUrlTest = 'https://localhost:44346/api/Organization/';
 
   constructor(private http: HttpClient) { }
 
   GetOrganizationsByTypeofService(typeOfServiceId: number): Observable<Organisation[]> {
-    return this.http.get<Organisation[]>(this.apiurl + 'GetOrganizationsByTypeofService/' + typeOfServiceId);
+    return this.http.get<Organisation[]>(this.apiUrl + 'GetOrganizationsByTypeofService/' + typeOfServiceId);
   }
 
   GetOrganizationDetails(organisationId: number): Observable<Organisation> {
-    return this.http.get<Organisation>(this.apiurl + 'GetOrganizationDetails/' + organisationId);
+    return this.http.get<Organisation>(this.apiUrl + 'GetOrganizationDetails/' + organisationId);
   }
 }

@@ -14,16 +14,16 @@ const httpOptions = {
 })
 export class ConsultantService {
 
-    apiUrl2 = 'http://dynamicprogrammers.co.za/api/consultant/'
-    apiurl = 'https://localhost:44346/api/consultant/';
+    apiUrl = 'http://dynamicprogrammers.co.za/api/consultant/';
+    apiUrlTest = 'https://localhost:44346/api/consultant/';
 
   constructor(private http: HttpClient) { }
 
   GetConsultantDetailsOrganizationId(organisationId: number): Observable<Consultant[]> {
-    return this.http.get<Consultant[]>(this.apiurl + 'GetConsultantDetailsOrganizationId/' + organisationId);
+    return this.http.get<Consultant[]>(this.apiUrl + 'GetConsultantDetailsOrganizationId/' + organisationId);
   }
 
   GetConsultantDetails(consultantId: number): Observable<Consultant> {
-    return this.http.get<Consultant>(this.apiurl + 'GetConsultantDetails/' + consultantId);
+    return this.http.get<Consultant>(this.apiUrl + 'GetConsultantDetails/' + consultantId);
   }
 }

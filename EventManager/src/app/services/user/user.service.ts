@@ -14,16 +14,16 @@ const httpOptions = {
 })
 export class UserService {
 
-    apiUrl2 = 'http://dynamicprogrammers.co.za/api/User/'
-    apiurl = 'https://localhost:44346/api/User/';
+    apiUrl = 'http://dynamicprogrammers.co.za/api/User/';
+    apiUrlTest = 'https://localhost:44346/api/User/';
 
   constructor(private http: HttpClient) { }
 
   GetUserDetailsById(id: number): Observable<User> {
-    return this.http.get<User>(this.apiurl + 'GetUserDetails/' + id);
+    return this.http.get<User>(this.apiUrl + 'GetUserDetails/' + id);
   }
 
   CreateNewUser(user: User): Observable<number> {
-    return this.http.post<number>(this.apiurl, user, httpOptions);
+    return this.http.post<number>(this.apiUrl, user, httpOptions);
   }
 }

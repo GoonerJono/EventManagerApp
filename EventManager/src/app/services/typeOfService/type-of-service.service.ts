@@ -14,16 +14,16 @@ const httpOptions = {
 })
 export class TypeOfServiceService {
 
-    apiUrl2 = 'http://dynamicprogrammers.co.za/api/TypeOfService/'
-    apiurl = 'https://localhost:44346/api/TypeOfService/';
+    apiUrl = 'http://dynamicprogrammers.co.za/api/TypeOfService/';
+    apiUrlTest = 'https://localhost:44346/api/TypeOfService/';
 
   constructor(private http: HttpClient) { }
 
   GetTypeOfServices(): Observable<TypeOfService[]> {
-    return this.http.get<TypeOfService[]>(this.apiurl);
+    return this.http.get<TypeOfService[]>(this.apiUrl);
   }
 
   GetTypeOfServiceById( typeOfServiceid: number): Observable<TypeOfService> {
-    return this.http.get<TypeOfService>(this.apiurl + 'GetTypeOfServiceById' + typeOfServiceid);
+    return this.http.get<TypeOfService>(this.apiUrl + 'GetTypeOfServiceById' + typeOfServiceid);
   }
 }

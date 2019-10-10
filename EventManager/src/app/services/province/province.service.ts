@@ -14,15 +14,16 @@ const httpOptions = {
 })
 export class ProvinceService {
 
-  apiurl = 'https://localhost:44346/api/Province/';
+  apiUrl = 'http://dynamicprogrammers.co.za/api/TypeOfService/';
+  apiUrlTest = 'https://localhost:44346/api/Province/';
 
   constructor(private http: HttpClient) { }
 
   GetProvinces(): Observable<Province[]> {
-    return this.http.get<Province[]>(this.apiurl + 'GetProvinces/');
+    return this.http.get<Province[]>(this.apiUrl + 'GetProvinces/');
   }
 
   GetProvinceById( provinceId: number): Observable<Province> {
-    return this.http.get<Province>(this.apiurl + 'GetProvinceById/' + provinceId);
+    return this.http.get<Province>(this.apiUrl + 'GetProvinceById/' + provinceId);
   }
 }
