@@ -21,4 +21,5 @@
     <ion-label position="floating">Contact Details: {{organisation.phoneNumber}}</ion-label>
   </ion-item>
   <div #map id="map"></div>
+  <ion-button color="primary" shape="block" (click)="viewDirections(organisation.id)">View Directions</ion-button>
 </ion-content>

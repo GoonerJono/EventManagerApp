@@ -73,4 +73,8 @@ export class ViewOrganisationPage implements OnInit {
       });
     });
   }
+
+  viewDirections(organisationId : number) {
+    this.router.navigate(['view-directions', { id: organisationId }]);
+  }
 }

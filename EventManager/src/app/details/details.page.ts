@@ -6,6 +6,7 @@ import { User } from './../modules/User/user.module';
 import { UserService } from './../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-details',
@@ -35,13 +36,18 @@ export class DetailsPage implements OnInit {
     private userService: UserService,
     private appointmentService: AppointmentService,
     private router: Router,
-    private typeOfServiceService: TypeOfServiceService ) { }
+    private typeOfServiceService: TypeOfServiceService,
+    private storage: Storage ) { }
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.appointmentService.GetAppointmentByUserId(this.id).subscribe(app => {
       this.appointment = app;
       console.log(this.appointment);
+    });
+
+    this.storage.get('UserId').then((val)=> {
+      console.log('User id: ',val);
     });
 
   }
