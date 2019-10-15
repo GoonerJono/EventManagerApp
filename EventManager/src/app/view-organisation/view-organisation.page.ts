@@ -1,5 +1,5 @@
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { Organisation } from './../modules/Organization/organisation.module';
+import { OrganisationDetails } from './../modules/Organization/organizationdetails.module';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrganisationService } from '../services/Organisation/organisation.service';
@@ -21,13 +21,7 @@ export class ViewOrganisationPage implements OnInit {
   longitude: any;
 
   id: number;
-  organisation: Organisation = {
-    id: undefined,
-    address: '',
-    email: '',
-    hours: '',
-    name: ''
-  };
+  organisation: OrganisationDetails;
 
   constructor(
     private route: ActivatedRoute,
@@ -59,7 +53,7 @@ export class ViewOrganisationPage implements OnInit {
 
       this.geolocation.getCurrentPosition().then(pos => {
         this.latitude = pos.coords.latitude;
-        this.longitude = pos.coords.longitude
+        this.longitude = pos.coords.longitude;
         this.latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
         const infoWindow = new google.maps.InfoWindow;
         const curPos = {
@@ -74,7 +68,7 @@ export class ViewOrganisationPage implements OnInit {
     });
   }
 
-  viewDirections(organisationId : number) {
+  viewDirections(organisationId: number) {
     this.router.navigate(['view-directions', { id: organisationId }]);
   }
 }

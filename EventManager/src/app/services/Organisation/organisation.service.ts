@@ -2,6 +2,7 @@ import { Organisation } from './../../modules/Organization/organisation.module';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { OrganisationDetails } from 'src/app/modules/Organization/organizationdetails.module';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,10 +21,10 @@ export class OrganisationService {
   constructor(private http: HttpClient) { }
 
   GetOrganizationsByTypeofService(typeOfServiceId: number): Observable<Organisation[]> {
-    return this.http.get<Organisation[]>(this.apiUrl + 'GetOrganizationsByTypeofService/' + typeOfServiceId);
+    return this.http.get<Organisation[]>(this.apiUrlTest + 'GetOrganizationsByTypeofService/' + typeOfServiceId);
   }
 
-  GetOrganizationDetails(organisationId: number): Observable<Organisation> {
-    return this.http.get<Organisation>(this.apiUrl + 'GetOrganizationDetails/' + organisationId);
+  GetOrganizationDetails(organisationId: number): Observable<OrganisationDetails> {
+    return this.http.get<OrganisationDetails>(this.apiUrlTest + 'GetOrganizationDetails/' + organisationId);
   }
 }

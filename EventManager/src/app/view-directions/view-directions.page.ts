@@ -12,7 +12,7 @@ declare var google;
 export class ViewDirectionsPage implements OnInit {
 
   @ViewChild('map', {static: false}) mapElement: ElementRef;
-  //@ViewChild('directionsPanel', {static: false}) directionsPanel: ElementRef;
+  // @ViewChild('directionsPanel', {static: false}) directionsPanel: ElementRef;
   latitude: any;
   longitude: any;
   map: any;
@@ -26,33 +26,33 @@ export class ViewDirectionsPage implements OnInit {
       this.loadMap();
       this.startNavigating();
     });
-    
+
   }
 
-  loadMap(){
+  loadMap() {
     this.geolocation.getCurrentPosition().then(pos => {
       this.latitude = pos.coords.latitude;
-      this.longitude = pos.coords.longitude})
-    
-    let latLng = new google.maps.LatLng(this.latitude,this.longitude);
+      this.longitude = pos.coords.longitude; });
 
-    let mapOptions = {
+    const latLng = new google.maps.LatLng(this.latitude, this.longitude);
+
+    const mapOptions = {
       center: latLng,
       curPos: latLng,
       zoom: 5,
       mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
+    };
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
   }
 
-  startNavigating(){
+  startNavigating() {
 
-    let directionsService = new google.maps.DirectionsService;
-    let directionsDisplay = new google.maps.DirectionsRenderer;
+    const directionsService = new google.maps.DirectionsService;
+    const directionsDisplay = new google.maps.DirectionsRenderer;
 
     directionsDisplay.setMap(this.map);
-    //directionsDisplay.setPanel(this.directionsPanel.nativeElement);
+    // directionsDisplay.setPanel(this.directionsPanel.nativeElement);
 
     directionsService.route({
         origin: {lat: 37.77, lng: -122.447},
@@ -60,7 +60,7 @@ export class ViewDirectionsPage implements OnInit {
         travelMode: google.maps.TravelMode['DRIVING']
     }, (res, status) => {
 
-        if(status == google.maps.DirectionsStatus.OK){
+        if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(res);
         } else {
             console.warn(status);

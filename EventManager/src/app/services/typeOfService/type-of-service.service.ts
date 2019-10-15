@@ -20,10 +20,10 @@ export class TypeOfServiceService {
   constructor(private http: HttpClient) { }
 
   GetTypeOfServices(): Observable<TypeOfService[]> {
-    return this.http.get<TypeOfService[]>(this.apiUrl);
+    return this.http.get<TypeOfService[]>(this.apiUrlTest);
   }
 
   GetTypeOfServiceById( typeOfServiceid: number): Observable<TypeOfService> {
-    return this.http.get<TypeOfService>(this.apiUrl + 'GetTypeOfServiceById' + typeOfServiceid);
+    return this.http.get<TypeOfService>(this.apiUrlTest + 'GetTypeOfServiceById' + typeOfServiceid);
   }
 }

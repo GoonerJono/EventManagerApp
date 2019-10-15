@@ -5,7 +5,7 @@ export class Consultant {
     surname?: string;
     dateOfBirth?: Date;
     gender?: string;
-    phoneNumber?: number;
+    phoneNumber?: string;
     email?: string;
     username?: string;
     password?: string;
