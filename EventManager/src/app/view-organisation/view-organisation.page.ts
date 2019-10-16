@@ -1,5 +1,4 @@
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { Organisation } from './../modules/Organization/organisation.module';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrganisationService } from '../services/Organisation/organisation.service';
@@ -61,7 +60,7 @@ export class ViewOrganisationPage implements OnInit {
 
   }
 
-  viewDirections(organisationId : number) {
+  viewDirections(organisationId: number) {
     this.router.navigate(['view-directions', { id: organisationId }]);
   }
 }

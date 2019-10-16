@@ -7,6 +7,6 @@ export class User {
     birthDate?: Date;
     gender?: string;
     email?: string;
-    cellphoneNumber?: number;
+    cellphoneNumber?: string;
     isVerified?: boolean;
 }

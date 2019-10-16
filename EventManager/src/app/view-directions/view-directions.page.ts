@@ -15,7 +15,7 @@ declare var google;
 export class ViewDirectionsPage implements OnInit {
 
   @ViewChild('map', {static: false}) mapElement: ElementRef;
-  //@ViewChild('directionsPanel', {static: false}) directionsPanel: ElementRef;
+  // @ViewChild('directionsPanel', {static: false}) directionsPanel: ElementRef;
   latitude: any;
   longitude: any;
   latLng: any;
@@ -54,6 +54,7 @@ export class ViewDirectionsPage implements OnInit {
     }); }
 
   ngOnInit() {
+<<<<<<< HEAD
     
     this.loadMap();
   }
@@ -105,18 +106,40 @@ console.log(this.organisation)
 
     });
 
+=======
+    this.plt.ready().then(() => {
+      this.loadMap();
+      this.startNavigating();
+    });
+
+  }
+
+  loadMap() {
+    this.geolocation.getCurrentPosition().then(pos => {
+      this.latitude = pos.coords.latitude;
+      this.longitude = pos.coords.longitude; });
+
+    const latLng = new google.maps.LatLng(this.latitude, this.longitude);
+
+    const mapOptions = {
+      center: latLng,
+      curPos: latLng,
+      zoom: 5,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+>>>>>>> c763fbe8d28b54a31c8e7620080d3a87abcedd8d
 
       });
     })
   }
 
-  startNavigating(){
+  startNavigating() {
 
-    let directionsService = new google.maps.DirectionsService;
-    let directionsDisplay = new google.maps.DirectionsRenderer;
+    const directionsService = new google.maps.DirectionsService;
+    const directionsDisplay = new google.maps.DirectionsRenderer;
 
     directionsDisplay.setMap(this.map);
-    //directionsDisplay.setPanel(this.directionsPanel.nativeElement);
+    // directionsDisplay.setPanel(this.directionsPanel.nativeElement);
 
     directionsService.route({
         origin: {lat: 37.77, lng: -122.447},
@@ -124,7 +147,7 @@ console.log(this.organisation)
         travelMode: google.maps.TravelMode['DRIVING']
     }, (res, status) => {
 
-        if(status == google.maps.DirectionsStatus.OK){
+        if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(res);
         } else {
             console.warn(status);

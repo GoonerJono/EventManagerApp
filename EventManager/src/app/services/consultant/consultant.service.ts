@@ -20,10 +20,10 @@ export class ConsultantService {
   constructor(private http: HttpClient) { }
 
   GetConsultantDetailsOrganizationId(organisationId: number): Observable<Consultant[]> {
-    return this.http.get<Consultant[]>(this.apiUrl + 'GetConsultantDetailsOrganizationId/' + organisationId);
+    return this.http.get<Consultant[]>(this.apiUrlTest + 'GetConsultantDetailsOrganizationId/' + organisationId);
   }
 
   GetConsultantDetails(consultantId: number): Observable<Consultant> {
-    return this.http.get<Consultant>(this.apiUrl + 'GetConsultantDetails/' + consultantId);
+    return this.http.get<Consultant>(this.apiUrlTest + 'GetConsultantDetails/' + consultantId);
   }
 }

@@ -21,7 +21,7 @@ export class OrganisationService {
   constructor(private http: HttpClient) { }
 
   GetOrganizationsByTypeofService(typeOfServiceId: number): Observable<Organisation[]> {
-    return this.http.get<Organisation[]>(this.apiUrl + 'GetOrganizationsByTypeofService/' + typeOfServiceId);
+    return this.http.get<Organisation[]>(this.apiUrlTest + 'GetOrganizationsByTypeofService/' + typeOfServiceId);
   }
 
   GetOrganizationDetails(organisationId: number): Observable<OrganisationDetails> {
