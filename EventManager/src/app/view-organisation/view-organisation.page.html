@@ -12,14 +12,17 @@
     <ion-label position="floating">Name: {{organisation.name}}</ion-label>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">Hours: {{organisation.hours}}</ion-label>
-  </ion-item>  
+    <ion-label position="floating">Hours: {{organisation.openTime}} - {{organisation.closeTime}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Days: {{organisation.organizationStartDay}} - {{organisation.organizationEndDay}}</ion-label>
+  </ion-item>
   <ion-item>
       <ion-label position="floating">Email: {{organisation.email}}</ion-label>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Contact Details: {{organisation.phoneNumber}}</ion-label>
   </ion-item>
-  <div #map id="map"></div>
-  <ion-button color="primary" shape="block" (click)="viewDirections(organisation.id)">View Directions</ion-button>
+  
+  <ion-button color="primary" shape="block" (click)="viewDirections(organisation.organizationId)">View Directions</ion-button>
 </ion-content>

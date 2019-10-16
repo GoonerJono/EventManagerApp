@@ -57,4 +57,14 @@ user: User = {
 
     await alert.present();
   }
+
+  async UserNotVerified() {
+    const alert = await this.alertController.create({
+      header: 'Verification',
+      subHeader: 'User Verification',
+      message: 'The user has not been verified'
+    });
+
+    await alert.present();
+  }
 }

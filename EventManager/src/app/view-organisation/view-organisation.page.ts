@@ -4,6 +4,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrganisationService } from '../services/Organisation/organisation.service';
 import { Platform } from '@ionic/angular';
+import { OrganisationDetails } from '../modules/Organization/organisationDetails.module';
 
 declare var google;
 
@@ -21,12 +22,24 @@ export class ViewOrganisationPage implements OnInit {
   longitude: any;
 
   id: number;
-  organisation: Organisation = {
-    id: undefined,
-    address: '',
-    email: '',
-    hours: '',
-    name: ''
+  organisation: OrganisationDetails ={
+    organizationId: undefined,
+    address:'',
+    city:'',
+    closeTime: undefined,
+    email:'',
+    isVerified: true,
+    latitude:'',
+    longitude:'',
+    name: '',
+    openTime: undefined,
+    organizationEndDay: '',
+    organizationStartDay: '',
+    phoneNumber: '',
+    province: '',
+    registeredDate: undefined,
+    suburb:'',
+    typeOfServiceId: undefined
   };
 
   constructor(
@@ -45,33 +58,7 @@ export class ViewOrganisationPage implements OnInit {
       return this.organisation;
     });
 
-    this.plt.ready().then(() => {
-      const mapOptions = {
-        zoom: 5,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: false,
-        mapMarker : new google.maps.Marker()
-      };
 
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
-      this.geolocation.getCurrentPosition().then(pos => {
-        this.latitude = pos.coords.latitude;
-        this.longitude = pos.coords.longitude
-        this.latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-        const infoWindow = new google.maps.InfoWindow;
-        const curPos = {
-          lat: this.latitude,
-          lng: this.longitude
-        };
-        infoWindow.setPosition(curPos);
-        infoWindow.open(this.map);
-        this.map.setCenter(this.latLng);
-        this.map.setZoom(15);
-      });
-    });
   }
 
   viewDirections(organisationId : number) {
