@@ -20,10 +20,10 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   GetUserDetailsById(id: number): Observable<User> {
-    return this.http.get<User>(this.apiUrlTest + 'GetUserDetails/' + id);
+    return this.http.get<User>(this.apiUrl + 'GetUserDetails/' + id);
   }
 
   CreateNewUser(user: User): Observable<number> {
-    return this.http.post<number>(this.apiUrlTest, user, httpOptions);
+    return this.http.post<number>(this.apiUrl, user, httpOptions);
   }
 }

@@ -54,7 +54,6 @@ export class ViewDirectionsPage implements OnInit {
     }); }
 
   ngOnInit() {
-<<<<<<< HEAD
     
     this.loadMap();
   }
@@ -106,28 +105,6 @@ console.log(this.organisation)
 
     });
 
-=======
-    this.plt.ready().then(() => {
-      this.loadMap();
-      this.startNavigating();
-    });
-
-  }
-
-  loadMap() {
-    this.geolocation.getCurrentPosition().then(pos => {
-      this.latitude = pos.coords.latitude;
-      this.longitude = pos.coords.longitude; });
-
-    const latLng = new google.maps.LatLng(this.latitude, this.longitude);
-
-    const mapOptions = {
-      center: latLng,
-      curPos: latLng,
-      zoom: 5,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
->>>>>>> c763fbe8d28b54a31c8e7620080d3a87abcedd8d
 
       });
     })

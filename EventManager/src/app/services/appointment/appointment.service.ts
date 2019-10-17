@@ -22,7 +22,7 @@ export class AppointmentService {
   constructor(private htpp: HttpClient) { }
 
   GetAppointmentByUserId(id: number): Observable<Appointment[]> {
-    return this.htpp.get<Appointment[]>(this.apiurlTest + 'GetAppointmentsUserId/' + id);
+    return this.htpp.get<Appointment[]>(this.apiurl + 'GetAppointmentsUserId/' + id);
   }
 
   CreateNewAppointment(appointment: Appointment): Observable<number> {
@@ -30,10 +30,10 @@ export class AppointmentService {
   }
 
   GetAppointmentByAppointmentId(id: number): Observable<Appointment> {
-    return this.htpp.get<Appointment>(this.apiurlTest + 'GetAppointment/' + id);
+    return this.htpp.get<Appointment>(this.apiurl + 'GetAppointment/' + id);
   }
 
   GetAppointmentDetails(id: number): Observable<AppointmentDetails> {
-    return this.htpp.get<AppointmentDetails>(this.apiurlTest + 'GetAppointmentDetails/' + id);
+    return this.htpp.get<AppointmentDetails>(this.apiurl + 'GetAppointmentDetails/' + id);
   }
 }

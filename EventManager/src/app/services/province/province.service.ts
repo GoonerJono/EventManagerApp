@@ -20,10 +20,10 @@ export class ProvinceService {
   constructor(private http: HttpClient) { }
 
   GetProvinces(): Observable<Province[]> {
-    return this.http.get<Province[]>(this.apiUrlTest + 'GetProvinces/');
+    return this.http.get<Province[]>(this.apiUrl + 'GetProvinces/');
   }
 
   GetProvinceById( provinceId: number): Observable<Province> {
-    return this.http.get<Province>(this.apiUrlTest + 'GetProvinceById/' + provinceId);
+    return this.http.get<Province>(this.apiUrl + 'GetProvinceById/' + provinceId);
   }
 }
