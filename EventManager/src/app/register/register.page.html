@@ -11,36 +11,36 @@
 
   <ion-content class="ion-padding">
       <ion-item>
-        <ion-label>First Name</ion-label>
+        <ion-label position="floating"><ion-icon name="person"></ion-icon>First Name</ion-label>
         <ion-input [(ngModel)]="user.name" placeholder="Person First name"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Last Name</ion-label>
+        <ion-label position="floating"><ion-icon name="person"></ion-icon>Last Name</ion-label>
         <ion-input [(ngModel)]="user.surname" placeholder="Person Last Name"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Email</ion-label>
+        <ion-label position="floating"><ion-icon name="mail"></ion-icon>Email</ion-label>
         <ion-input [(ngModel)]="user.email" placeholder="email Address"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Cell number</ion-label>
+        <ion-label position="floating"><ion-icon name="phone-portrait"></ion-icon>Cell number</ion-label>
         <ion-input [(ngModel)]="user.cellphoneNumber" placeholder="Cell Phone number" maxlength="10"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Gender</ion-label>
+        <ion-label position="floating"><ion-icon name="person"></ion-icon>Gender</ion-label>
         <ion-input [(ngModel)]="user.gender" placeholder="Gender"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Date Of Birth</ion-label>
-        <ion-datetime [(ngModel)]="user.birthDate"></ion-datetime>
+        <ion-label position="floating"><ion-icon name="calendar"></ion-icon>Date Of Birth</ion-label>
+        <ion-datetime [(ngModel)]="user.birthDate" placeholder="Date Of Birth"></ion-datetime>
       </ion-item>
       <ion-item>
-          <ion-label>Username</ion-label>
+          <ion-label position="floating"><ion-icon name="person"></ion-icon>Username</ion-label>
           <ion-input [(ngModel)]="user.username" placeholder="Username"></ion-input>
         </ion-item>
       <ion-item>
-        <ion-label>Password</ion-label>
+        <ion-label position="floating"><ion-icon name="lock"></ion-icon>Password</ion-label>
         <ion-input [(ngModel)]="user.password" type="password" placeholder="password"></ion-input>
       </ion-item>
-      <ion-button color="primary" shape="block" (click)="create(user)">Create</ion-button>
+      <ion-button color="primary" shape="round" expand="block" (click)="create(user)">Create</ion-button>
     </ion-content>

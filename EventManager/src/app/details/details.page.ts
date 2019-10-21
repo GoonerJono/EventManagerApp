@@ -56,7 +56,7 @@ export class DetailsPage implements OnInit {
     this.router.navigate(['create-appointment', { id: this.id }]);
   }
 
-  ViewDetails(id) {
-    this.router.navigate(['view-appointment', { id }]);
+  ViewDetails(id: number) {
+    this.router.navigate(['view-appointment', { id: id }])
   }
 }
