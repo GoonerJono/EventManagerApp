@@ -1,11 +1,7 @@
-import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrganisationService } from '../services/Organisation/organisation.service';
-import { Platform } from '@ionic/angular';
 import { OrganisationDetails } from '../modules/Organization/organisationDetails.module';
-
-declare var google;
 
 @Component({
   selector: 'app-view-organisation',
@@ -21,15 +17,15 @@ export class ViewOrganisationPage implements OnInit {
   longitude: any;
 
   id: number;
-  organisation: OrganisationDetails ={
+  organisation: OrganisationDetails = {
     organizationId: undefined,
-    address:'',
-    city:'',
+    address: '',
+    city: '',
     closeTime: undefined,
-    email:'',
+    email: '',
     isVerified: true,
-    latitude:'',
-    longitude:'',
+    latitude: '',
+    longitude: '',
     name: '',
     openTime: undefined,
     organizationEndDay: '',
@@ -37,16 +33,14 @@ export class ViewOrganisationPage implements OnInit {
     phoneNumber: '',
     province: '',
     registeredDate: undefined,
-    suburb:'',
+    suburb: '',
     typeOfServiceId: undefined
   };
 
   constructor(
     private route: ActivatedRoute,
     private organizationService: OrganisationService,
-    private router: Router,
-    private plt: Platform,
-    private geolocation: Geolocation) { }
+    private router: Router) { }
 
   ngOnInit() {
 
@@ -62,5 +56,8 @@ export class ViewOrganisationPage implements OnInit {
 
   viewDirections(organisationId: number) {
     this.router.navigate(['view-directions', { id: organisationId }]);
+  }
+  Back() {
+    this.router.navigate(['view-appointment', { id: this.organisation.organizationId }]);
   }
 }

@@ -46,8 +46,8 @@ export class DetailsPage implements OnInit {
       console.log(this.appointment);
     });
 
-    this.storage.get('UserId').then((val)=> {
-      console.log('User id: ',val);
+    this.storage.get('UserId').then((val) => {
+      console.log('User id from storage: ', val);
     });
 
   }
@@ -57,6 +57,12 @@ export class DetailsPage implements OnInit {
   }
 
   ViewDetails(id: number) {
-    this.router.navigate(['view-appointment', { id: id }])
+    this.storage.set('AppointmentId', id);
+    this.router.navigate(['view-appointment', {id}]);
+  }
+
+  Logout() {
+    this.storage.clear();
+    this.router.navigate(['home']);
   }
 }

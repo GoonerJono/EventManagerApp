@@ -1,11 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-      </ion-buttons>
-    <ion-title>Directions</ion-title>
+    <ion-icon name="arrow-back" (click)="Back()" slot="start"></ion-icon><ion-title>Directions</ion-title><ion-icon name="refresh" (click)="loadMap()" slot="end"></ion-icon>
   </ion-toolbar>
 </ion-header>
-<ion-button (click)="loadMap()">View Map</ion-button>
 <div #map id="map"></div>
 

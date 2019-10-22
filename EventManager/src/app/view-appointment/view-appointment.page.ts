@@ -42,7 +42,7 @@ export class ViewAppointmentPage implements OnInit {
     this.router.navigate(['view-organisation', { id: organisationid }]);
   }
 
-  Reload(){
+  Reload() {
     this.appointmentService.GetAppointmentDetails(this.id).subscribe(app => {
       this.appointmentDetails = app;
       console.log(this.appointmentDetails);

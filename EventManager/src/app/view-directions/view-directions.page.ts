@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Platform } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrganisationService } from '../services/Organisation/organisation.service';
 import { OrganisationDetails } from '../modules/Organization/organisationDetails.module';
 
@@ -12,7 +12,8 @@ declare var google;
   templateUrl: './view-directions.page.html',
   styleUrls: ['./view-directions.page.scss'],
 })
-export class ViewDirectionsPage implements OnInit {
+
+export class ViewDirectionsPage implements OnInit, AfterViewInit {
 
   @ViewChild('map', {static: false}) mapElement: ElementRef;
   // @ViewChild('directionsPanel', {static: false}) directionsPanel: ElementRef;
@@ -21,15 +22,15 @@ export class ViewDirectionsPage implements OnInit {
   latLng: any;
   map: any;
   id: number;
-  organisation: OrganisationDetails ={
+  organisation: OrganisationDetails = {
     organizationId: undefined,
-    address:'',
-    city:'',
+    address: '',
+    city: '',
     closeTime: undefined,
-    email:'',
+    email: '',
     isVerified: true,
-    latitude:'',
-    longitude:'',
+    latitude: '',
+    longitude: '',
     name: '',
     openTime: undefined,
     organizationEndDay: '',
@@ -37,7 +38,7 @@ export class ViewDirectionsPage implements OnInit {
     phoneNumber: '',
     province: '',
     registeredDate: undefined,
-    suburb:'',
+    suburb: '',
     typeOfServiceId: undefined
   };
 
@@ -45,20 +46,24 @@ export class ViewDirectionsPage implements OnInit {
     private geolocation: Geolocation,
     private plt: Platform,
     private route: ActivatedRoute,
-    private organizationService: OrganisationService) {
+    private organizationService: OrganisationService,
+    private router: Router) {
+     }
+
+  ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.organizationService.GetOrganizationDetails(this.id).subscribe(app => {
       this.organisation = app;
       console.log(this.organisation);
       return this.organisation;
-    }); }
-
-  ngOnInit() {
-    
-    this.loadMap();
+    });
   }
 
-  loadMap(){
+ ngAfterViewInit() {
+  console.log(this.organisation);
+  this.loadMap();
+ }
+  loadMap() {
     this.plt.ready().then(() => {
       const mapOptions = {
         zoom: 5,
@@ -73,7 +78,7 @@ export class ViewDirectionsPage implements OnInit {
 
       this.geolocation.getCurrentPosition().then(pos => {
         this.latitude = pos.coords.latitude;
-        this.longitude = pos.coords.longitude
+        this.longitude = pos.coords.longitude;
         this.latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
         const infoWindow = new google.maps.InfoWindow;
         const curPos = {
@@ -83,45 +88,18 @@ export class ViewDirectionsPage implements OnInit {
         this.map.setCenter(this.latLng);
         this.map.setZoom(15);
 
-    let directionsService = new google.maps.DirectionsService;
-    let directionsDisplay = new google.maps.DirectionsRenderer;
+        const directionsService = new google.maps.DirectionsService;
+        const directionsDisplay = new google.maps.DirectionsRenderer;
 
-    directionsDisplay.setMap(this.map);
-    //directionsDisplay.setPanel(this.directionsPanel.nativeElement);
-console.log(this.organisation)
-    directionsService.route({
-      
-      
+        directionsDisplay.setMap(this.map);
+    // directionsDisplay.setPanel(this.directionsPanel.nativeElement);
+        console.log(this.organisation);
+        directionsService.route({
+
+
         origin: {lat: pos.coords.latitude, lng: pos.coords.longitude},
         destination: this.organisation.address,
-        travelMode: google.maps.TravelMode['DRIVING']
-    }, (res, status) => {
-
-        if(status == google.maps.DirectionsStatus.OK){
-            directionsDisplay.setDirections(res);
-        } else {
-            console.warn(status);
-        }
-
-    });
-
-
-      });
-    })
-  }
-
-  startNavigating() {
-
-    const directionsService = new google.maps.DirectionsService;
-    const directionsDisplay = new google.maps.DirectionsRenderer;
-
-    directionsDisplay.setMap(this.map);
-    // directionsDisplay.setPanel(this.directionsPanel.nativeElement);
-
-    directionsService.route({
-        origin: {lat: 37.77, lng: -122.447},
-        destination: {lat: 37.768, lng: -122.511},
-        travelMode: google.maps.TravelMode['DRIVING']
+        travelMode: google.maps.TravelMode.DRIVING
     }, (res, status) => {
 
         if (status === google.maps.DirectionsStatus.OK) {
@@ -131,7 +109,12 @@ console.log(this.organisation)
         }
 
     });
+      });
+    });
+  }
 
-}
+  Back() {
+    this.router.navigate(['view-organisation', { id: this.organisation.organizationId }]);
+  }
 
 }

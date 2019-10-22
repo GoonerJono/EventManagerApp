@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../modules/User/user.module';
 import { LoginService } from '../services/login/login.service';
 import { Router } from '@angular/router';
@@ -17,19 +17,21 @@ user: User = {
   password: ''
 };
 
-  constructor(private loginService: LoginService, 
+  constructor(private loginService: LoginService,
               private router: Router,
               public alertController: AlertController,
               private storage: Storage) {}
 
-  login(user) {
+
+
+  login(user: User) {
     console.log(user);
     this.loginService.Login(user).subscribe(r => {
       if (r !== 0) {
         console.log(r);
         this.userLogin();
         this.router.navigate(['details', { id: r }]);
-        this.storage.set('UserId',r)
+        this.storage.set('UserId', r);
       } else {
         this.usernotFound();
       }
