@@ -16,6 +16,7 @@ export class ViewAppointmentPage implements OnInit {
     id: undefined,
     ticketNumber: '',
     date: undefined,
+    reason:'',
     typeOfServiceName: '',
     organizationName: '',
     userNameSurname: '',

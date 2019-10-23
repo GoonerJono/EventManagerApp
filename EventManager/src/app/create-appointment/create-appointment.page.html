@@ -31,5 +31,9 @@
             <ion-label position="floating"><h2>Date Of Appointment</h2></ion-label>
             <ion-datetime  displayFormat="DD MMM YYYY HH:mm" minuteValues="0,15,30,45"  [(ngModel)]="appointment.date"></ion-datetime>
         </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h2>Reason for Appointment</h2></ion-label>
+          <ion-input [(ngModel)]="appointment.reason" placeholder="Reason for Appointment"></ion-input>
+        </ion-item>
         <ion-button color="danger" shape="block" (click)="CreateAppointment(appointment)">Accept</ion-button>
 </ion-content>

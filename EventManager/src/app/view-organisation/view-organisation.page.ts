@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OrganisationService } from '../services/Organisation/organisation.service';
 import { OrganisationDetails } from '../modules/Organization/organisationDetails.module';
 import { Storage } from '@ionic/storage';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-view-organisation',
@@ -36,7 +37,8 @@ export class ViewOrganisationPage implements OnInit {
     private route: ActivatedRoute,
     private organizationService: OrganisationService,
     private router: Router,
-    private storage: Storage) { }
+    private storage: Storage,
+    private callNumber: CallNumber) { }
 
   ngOnInit() {
 
@@ -58,5 +60,11 @@ export class ViewOrganisationPage implements OnInit {
       console.log('Appointment id from storage: ', val);
       this.router.navigate(['view-appointment', { id: val}]);
     });
+  }
+
+  Call(phoneNumber: number){ 
+    this.callNumber.callNumber(phoneNumber.toString(),true)
+    .then(res => console.log('lanched dialer!',res))
+    .catch(err => console.log('Error launching dialer',err))
   }
 }

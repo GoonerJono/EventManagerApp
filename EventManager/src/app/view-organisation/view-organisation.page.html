@@ -21,7 +21,7 @@
       <ion-label class="ion-padding">Email: {{organisation.email}}</ion-label>
   </ion-item>
   <ion-item>
-    <ion-label class="ion-padding">Contact Details: {{organisation.phoneNumber}}</ion-label>
+    <ion-label class="ion-padding">Contact Details: {{organisation.phoneNumber}} <ion-icon name="call" (click)="Call(organisation.phoneNumber)"></ion-icon></ion-label>
   </ion-item>
   
   <ion-button color="primary" shape="round" expand="block" (click)="viewDirections(organisation.organizationId)">View Directions</ion-button>

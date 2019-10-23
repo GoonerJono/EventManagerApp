@@ -18,6 +18,7 @@ import { AppointmentService } from './services/appointment/appointment.service';
 import { TypeOfServiceService } from './services/typeOfService/type-of-service.service';
 import { OrganisationService } from './services/Organisation/organisation.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, Geolocation, LoginService, UserService,
-    AppointmentService, TypeOfServiceService, OrganisationService, ConsultantService
+    AppointmentService, TypeOfServiceService, OrganisationService, ConsultantService,CallNumber
   ],
   bootstrap: [AppComponent]
 })
