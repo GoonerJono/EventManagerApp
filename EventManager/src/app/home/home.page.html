@@ -1,18 +1,27 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title >
+    <ion-title slot="start">
       Dynamic Programmers
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content  class="ion-padding">
-  <ion-item class="ion-padding" position="floating">
+<ion-content>
+  <ion-item lines="none">
+    <ion-avatar>
+      <ion-img src="../../assets/img/logo.png"></ion-img>
+    </ion-avatar>
+  </ion-item>
+  
+
+  <ion-item>
     <ion-icon name="person" color="primary"></ion-icon><ion-input [(ngModel)]="user.username" placeholder="Username"></ion-input>
   </ion-item>
-  <ion-item class="ion-padding" position="floating">
-    <ion-icon name="lock" color="primary"></ion-icon><ion-input [(ngModel)]="user.password" type="password" placeholder="password"></ion-input>
+  <ion-item>
+    <ion-icon name="lock" color="primary"></ion-icon><ion-input icon="email" [(ngModel)]="user.password" shape="round" expand="block" type="password"  placeholder="Password"></ion-input>
   </ion-item>
+  <br>
   <ion-button color="primary" shape="round" expand="block" (click)="login(user)">Login</ion-button>
+  <br>
   <ion-button color="danger"shape="round" expand="block" (click)="register()">Register</ion-button>
 </ion-content>

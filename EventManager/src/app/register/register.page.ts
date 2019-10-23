@@ -24,7 +24,7 @@ export class RegisterPage implements OnInit {
   };
 
   constructor(
-    private userService: UserService, 
+    private userService: UserService,
     private router: Router,
     public alertController: AlertController) { }
 
@@ -34,16 +34,20 @@ export class RegisterPage implements OnInit {
   create(user) {
     this.userService.CreateNewUser(user).subscribe(
       r => {console.log(r);
-      if (r == 1) {
+            if (r === 1) {
       this.Registered();
-     this.router.navigate(['']);
-    }else if(r == 2 ){
+      this.router.navigate(['']);
+    } else if (r === 2 ) {
       this.ExistingUser();
-    }else {
+    } else {
       this.NotRegistered();
     }
 
   });
+  }
+
+  Back() {
+    this.router.navigate(['']);
   }
 
   async NotRegistered() {

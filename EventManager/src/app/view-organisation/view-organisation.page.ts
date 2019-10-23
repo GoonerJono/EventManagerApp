@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrganisationService } from '../services/Organisation/organisation.service';
 import { OrganisationDetails } from '../modules/Organization/organisationDetails.module';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-view-organisation',
@@ -9,12 +10,6 @@ import { OrganisationDetails } from '../modules/Organization/organisationDetails
   styleUrls: ['./view-organisation.page.scss'],
 })
 export class ViewOrganisationPage implements OnInit {
-
-  @ViewChild('map', {static: false}) mapElement: ElementRef;
-  map: any;
-  latLng: any;
-  latitude: any;
-  longitude: any;
 
   id: number;
   organisation: OrganisationDetails = {
@@ -40,7 +35,8 @@ export class ViewOrganisationPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private organizationService: OrganisationService,
-    private router: Router) { }
+    private router: Router,
+    private storage: Storage) { }
 
   ngOnInit() {
 
@@ -58,6 +54,9 @@ export class ViewOrganisationPage implements OnInit {
     this.router.navigate(['view-directions', { id: organisationId }]);
   }
   Back() {
-    this.router.navigate(['view-appointment', { id: this.organisation.organizationId }]);
+    this.storage.get('AppointmentId').then((val) => {
+      console.log('Appointment id from storage: ', val);
+      this.router.navigate(['view-appointment', { id: val}]);
+    });
   }
 }
