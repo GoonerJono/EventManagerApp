@@ -60,10 +60,12 @@ export class ViewDirectionsPage implements OnInit, AfterViewInit {
   }
 
  ngAfterViewInit() {
+  console.log('this is after screen loads');
   console.log(this.organisation);
   this.loadMap();
  }
   loadMap() {
+    console.log('refresh');
     this.plt.ready().then(() => {
       const mapOptions = {
         zoom: 5,

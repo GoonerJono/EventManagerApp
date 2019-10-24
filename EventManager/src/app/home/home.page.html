@@ -7,13 +7,6 @@
 </ion-header>
 
 <ion-content>
-  <ion-item lines="none">
-    <ion-avatar>
-      <ion-img src="../../assets/img/logo.png"></ion-img>
-    </ion-avatar>
-  </ion-item>
-  
-
   <ion-item>
     <ion-icon name="person" color="primary"></ion-icon><ion-input [(ngModel)]="user.username" placeholder="Username"></ion-input>
   </ion-item>
@@ -23,5 +16,5 @@
   <br>
   <ion-button color="primary" shape="round" expand="block" (click)="login(user)">Login</ion-button>
   <br>
-  <ion-button color="danger"shape="round" expand="block" (click)="register()">Register</ion-button>
+  <ion-button color="danger" shape="round" expand="block" (click)="register()">Register</ion-button>
 </ion-content>

@@ -10,7 +10,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
 user: User = {
   username: '',
@@ -20,9 +20,13 @@ user: User = {
   constructor(private loginService: LoginService,
               private router: Router,
               public alertController: AlertController,
-              private storage: Storage) {}
+              private storage: Storage) {
+              }
 
-
+ngOnInit() {
+this.user.username = '';
+this.user.password = '';
+}
 
   login(user: User) {
     console.log(user);
