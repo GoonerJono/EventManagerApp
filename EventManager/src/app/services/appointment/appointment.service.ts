@@ -26,7 +26,7 @@ export class AppointmentService {
   }
 
   CreateNewAppointment(appointment: Appointment): Observable<number> {
-    return this.htpp.post<number>(this.apiurl + 'CreateNewAppointment/', appointment, httpOptions);
+    return this.htpp.post<number>(this.apiurlTest + 'CreateNewAppointment/', appointment, httpOptions);
   }
 
   GetAppointmentByAppointmentId(id: number): Observable<Appointment> {
@@ -35,5 +35,9 @@ export class AppointmentService {
 
   GetAppointmentDetails(id: number): Observable<AppointmentDetails> {
     return this.htpp.get<AppointmentDetails>(this.apiurl + 'GetAppointmentDetails/' + id);
+  }
+
+  GetRejectedAppointmentByUserId(id: number): Observable<AppointmentDetails[]> {
+    return this.htpp.get<AppointmentDetails[]>(this.apiurlTest + 'GetRejectedAppointmentByUserId/' + id);
   }
 }

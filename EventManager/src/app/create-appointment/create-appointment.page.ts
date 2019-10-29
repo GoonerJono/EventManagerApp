@@ -8,6 +8,7 @@ import { TypeOfServiceService } from './../services/typeOfService/type-of-servic
 import { Router, ActivatedRoute } from '@angular/router';
 import { Appointment } from 'src/app/modules/Appointment/appointment.module';
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -43,7 +44,8 @@ consultant: Consultant[];
     private appointmentService: AppointmentService,
     private organisationService: OrganisationService,
     private consultantService: ConsultantService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alertController: AlertController
     ) { }
 
   ngOnInit() {
@@ -59,7 +61,12 @@ consultant: Consultant[];
     console.log(appointment);
     this.appointmentService.CreateNewAppointment(appointment).subscribe(
       create => {if ( create === 1 ) {
+        this.AppointmentCreated();
         this.router.navigate(['details', { id: this.id }]);
+      }else if(create === 2){
+        this.AppointmentTimeSlotTaken();
+      }else if(create === 3){
+        this.AppointmentOutsideOfBusinessHours();
       }}
     );
     // this.router.navigate(['details', { id: this.id }]);
@@ -82,4 +89,30 @@ consultant: Consultant[];
    );
   }
 
+  async AppointmentCreated() {
+    const alert = await this.alertController.create({
+      header: 'Appointment Created',
+      message: 'Appointment was created succesfully',
+    });
+
+    await alert.present();
+  }
+
+  async AppointmentTimeSlotTaken() {
+    const alert = await this.alertController.create({
+      header: 'Appointment Not Created',
+      message: 'Appointment not created because time slot was taken'
+    });
+
+    await alert.present();
+  }
+
+  async AppointmentOutsideOfBusinessHours() {
+    const alert = await this.alertController.create({
+      header: 'Appointment not Created',
+      message: 'Appointment not created because the appointment is outside business hours'
+    });
+
+    await alert.present();
+  }
 }
