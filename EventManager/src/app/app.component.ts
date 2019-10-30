@@ -37,7 +37,7 @@ export class AppComponent {
     [
       {
         title : "Home",
-        route   : "home",
+        route   : "details",
         icon  : "home"
       },
       {
@@ -54,6 +54,15 @@ export class AppComponent {
  }
 
  MenuItemClick(route: string){
-  this.router.navigate([`${route}`]);
+   console.log(route)
+   if(route === 'details') {
+    this.storage.get('UserId').then((val) => {
+      console.log(val)
+      this.router.navigate([`${route}`, {val}]);
+    });
+   }else {
+    this.router.navigate([`${route}`]);
+   }
+  
  }
 }

@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class AppointmentService {
 
-    apiurl = 'http://dynamicprogrammers.co.za/api/Appointment/';
+    apiurl = 'http://dynamicprogrammers.co.za/asp/api/Appointment/';
     apiurlTest = 'https://localhost:44346/api/Appointment/';
 
 

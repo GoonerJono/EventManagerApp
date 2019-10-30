@@ -7,6 +7,8 @@ import { UserService } from './../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { Calendar } from '@ionic-native/calendar/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-details',
@@ -37,19 +39,25 @@ export class DetailsPage implements OnInit {
     private appointmentService: AppointmentService,
     private router: Router,
     private typeOfServiceService: TypeOfServiceService,
-    private storage: Storage ) { }
+    private storage: Storage,
+    private calendar: Calendar,
+    private plt: Platform ) { }
 
   ngOnInit() {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
-    this.appointmentService.GetAppointmentByUserId(this.id).subscribe(app => {
-      this.appointment = app;
-      console.log(this.appointment);
-    });
-
     this.storage.get('UserId').then((val) => {
-      console.log('User id from storage: ', val);
+      if(val === null){
+        this.appointmentService.GetAppointmentByUserId(val).subscribe(app => {
+          this.appointment = app;
+          console.log(this.appointment);
+        });
+      }else {
+        this.id = Number(this.route.snapshot.paramMap.get('id'));
+        this.appointmentService.GetAppointmentByUserId(this.id).subscribe(app => {
+        this.appointment = app;
+        console.log(this.appointment);
+      });
+      }
     });
-
   }
 
   CreateAppointment() {
@@ -64,5 +72,15 @@ export class DetailsPage implements OnInit {
   Logout() {
     this.storage.clear();
     this.router.navigate(['home']);
+  }
+
+  AddToCalendar(item: Appointment){
+    this.plt.ready().then(() => {
+      let date = new Date();
+      let options = { calendarId: 1, calendarName: '', url: '', firstReminderMinutes: 15 };
+      this.calendar.createEventInteractivelyWithOptions(item.ticketNumber,item.reason,item.ticketNumber,item.date,item.date,options)
+      console.log('add to calendar');
+    })
+    
   }
 }

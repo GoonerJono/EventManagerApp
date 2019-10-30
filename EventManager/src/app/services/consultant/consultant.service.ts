@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class ConsultantService {
 
-    apiUrl = 'http://dynamicprogrammers.co.za/api/consultant/';
+    apiUrl = 'http://dynamicprogrammers.co.za/asp/api/consultant/';
     apiUrlTest = 'https://localhost:44346/api/consultant/';
 
   constructor(private http: HttpClient) { }

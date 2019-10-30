@@ -16,7 +16,7 @@ const httpOptions = {
 export class LoginService {
 
     apiUrlTest = 'https://localhost:44346/api/Login/';
-    apiUrl = 'http://dynamicprogrammers.co.za/api/Login/';
+    apiUrl = 'http://dynamicprogrammers.co.za/asp/api/Login/';
 
     constructor(private http: HttpClient) {
 

@@ -1,9 +1,42 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Edit User</ion-title>
+    <ion-title>Edit User</ion-title><ion-menu-button slot="end"></ion-menu-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content *ngIf="user" class="ion-padding">
+  <ion-item>
+    <ion-label position="floating" color="primary"><ion-icon name="person" color="primary"></ion-icon>First Name</ion-label>
+    <ion-input [(ngModel)]="user.name" placeholder="Person First name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating" color="primary"><ion-icon name="person" color="primary"></ion-icon>Last Name</ion-label>
+    <ion-input [(ngModel)]="user.surname" placeholder="Person Last Name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating" color="primary"><ion-icon name="mail" color="primary"></ion-icon>Email</ion-label>
+    <ion-input [(ngModel)]="user.email" placeholder="Email Address"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating" color="primary"><ion-icon name="phone-portrait" color="primary"></ion-icon>Cell number</ion-label>
+    <ion-input [(ngModel)]="user.cellphoneNumber" placeholder="Cell Phone number" maxlength="10"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating" color="primary"><ion-icon name="Person" color="primary"></ion-icon>Gender</ion-label>
+    <ion-input [(ngModel)]="user.gender" placeholder="Gender"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating" color="primary"><ion-icon name="calendar" color="primary"></ion-icon>Date Of Birth</ion-label>
+    <ion-datetime [(ngModel)]="user.birthDate" placeholder="Date Of Birth"></ion-datetime>
+  </ion-item>
+  <ion-item>
+      <ion-label position="floating" color="primary"><ion-icon name="person" color="primary"></ion-icon>Username</ion-label>
+      <ion-input [(ngModel)]="user.username" placeholder="Username"></ion-input>
+    </ion-item>
+  <ion-item>
+    <ion-label position="floating" color="primary"><ion-icon name="lock" color="primary"></ion-icon>Password</ion-label>
+    <ion-input [(ngModel)]="user.password" type="password" placeholder="Password"></ion-input>
+  </ion-item>
+  <ion-button color="primary" shape="round" expand="block" (click)="UpdateUser(user)">Update Details</ion-button>
 </ion-content>
+

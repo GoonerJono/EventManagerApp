@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class OrganisationService {
 
-    apiUrl = 'http://dynamicprogrammers.co.za/api/Organization/';
+    apiUrl = 'http://dynamicprogrammers.co.za/asp/api/Organization/';
     apiUrlTest = 'https://localhost:44346/api/Organization/';
 
   constructor(private http: HttpClient) { }
@@ -24,7 +24,7 @@ export class OrganisationService {
     return this.http.get<Organisation[]>(this.apiUrl + 'GetOrganizationsByTypeofService/' + typeOfServiceId);
   }
 
-  GetOrganizationDetails(organisationId: number): Observable<OrganisationDetails> {
-    return this.http.get<OrganisationDetails>(this.apiUrl + 'GetOrganizationDetails/' + organisationId);
+  GetOrganizationDetails(id: number): Observable<OrganisationDetails> {
+    return this.http.get<OrganisationDetails>(this.apiUrl + 'GetOrganizationDetails/' + id);
   }
 }

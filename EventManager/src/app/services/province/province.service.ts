@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class ProvinceService {
 
-  apiUrl = 'http://dynamicprogrammers.co.za/api/TypeOfService/';
+  apiUrl = 'http://dynamicprogrammers.co.za/asp/api/TypeOfService/';
   apiUrlTest = 'https://localhost:44346/api/Province/';
 
   constructor(private http: HttpClient) { }

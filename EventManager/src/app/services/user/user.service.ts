@@ -9,12 +9,18 @@ const httpOptions = {
   'Access-Control-Allow-Methods': 'POST'})
 };
 
+const httpOptions2 = {
+  headers: new HttpHeaders({
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Methods': 'PUT'})
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-    apiUrl = 'http://dynamicprogrammers.co.za/api/User/';
+    apiUrl = 'http://dynamicprogrammers.co.za/asp/api/User/';
     apiUrlTest = 'https://localhost:44346/api/User/';
 
   constructor(private http: HttpClient) { }
@@ -24,6 +30,10 @@ export class UserService {
   }
 
   CreateNewUser(user: User): Observable<number> {
-    return this.http.post<number>(this.apiUrl, user, httpOptions);
+    return this.http.post<number>(this.apiUrl, user, httpOptions2);
+  }
+
+  UpdateUser(user: User): Observable<number> {
+    return this.http.put<number>(this.apiUrl+'UpdateUser/', user, httpOptions);
   }
 }
