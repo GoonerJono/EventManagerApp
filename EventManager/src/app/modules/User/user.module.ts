@@ -9,4 +9,6 @@ export class User {
     email?: string;
     cellphoneNumber?: string;
     isVerified?: boolean;
+    isActive?: boolean;
+    code?: string;
 }

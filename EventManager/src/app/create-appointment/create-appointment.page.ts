@@ -9,6 +9,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Appointment } from 'src/app/modules/Appointment/appointment.module';
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Province } from '../modules/Province/province.module';
+import { ProvinceService } from '../services/province/province.service';
 
 
 @Component({
@@ -30,13 +32,15 @@ appointment: Appointment = {
   consultantId: undefined,
   user: undefined,
   organization: undefined,
-  consultant: undefined
+  consultant: undefined,
+  time: undefined
 
 };
 todaysDate =  Date.now();
 typeOfService: TypeOfService[];
 organisation: Organisation[];
 consultant: Consultant[];
+province: Province[];
 
   constructor(
     private router: Router,
@@ -45,7 +49,8 @@ consultant: Consultant[];
     private organisationService: OrganisationService,
     private consultantService: ConsultantService,
     private route: ActivatedRoute,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private provinceService: ProvinceService
     ) { }
 
   ngOnInit() {
@@ -53,30 +58,32 @@ consultant: Consultant[];
     this.typeOfServiceService.GetTypeOfServices().subscribe(
       TOS => {this.typeOfService = TOS; }
     );
+    this.provinceService.GetProvinces().subscribe(
+      province => {this.province = province;
+                   console.log(province)
+      ; }
+
+    );
   }
 
   CreateAppointment(appointment) {
     appointment.userId = this.id;
-    console.log(this.id);
-    console.log(appointment);
     this.appointmentService.CreateNewAppointment(appointment).subscribe(
       create => {if ( create === 1 ) {
         this.AppointmentCreated();
         this.router.navigate(['details', { id: this.id }]);
-      }else if(create === 2){
+      } else if (create === 2) {
         this.AppointmentTimeSlotTaken();
-      }else if(create === 3){
+      } else if (create === 3) {
         this.AppointmentOutsideOfBusinessHours();
       }}
     );
-    // this.router.navigate(['details', { id: this.id }]);
   }
 
   GetConsultant($event) {
     this.consultantid = $event;
     this.consultantService.GetConsultantDetailsOrganizationId($event).subscribe(
-      org => {this.consultant = org;
-              console.log(this.consultant); }
+      org => {this.consultant = org; }
    );
   }
 
@@ -84,8 +91,7 @@ consultant: Consultant[];
    this.organisationid  = $event;
    console.log(this.organisationid);
    this.organisationService.GetOrganizationsByTypeofService(this.organisationid).subscribe(
-      org => {this.organisation = org;
-              console.log(this.organisation); }
+      org => {this.organisation = org; }
    );
   }
 

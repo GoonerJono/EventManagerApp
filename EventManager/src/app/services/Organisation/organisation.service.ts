@@ -24,6 +24,10 @@ export class OrganisationService {
     return this.http.get<Organisation[]>(this.apiUrl + 'GetOrganizationsByTypeofService/' + typeOfServiceId);
   }
 
+  GetOrganizationsByProvince(provinceId: number): Observable<Organisation[]> {
+    return this.http.get<Organisation[]>(this.apiUrl + 'GetOrganizationsByProvince/' + provinceId);
+  }
+
   GetOrganizationDetails(id: number): Observable<OrganisationDetails> {
     return this.http.get<OrganisationDetails>(this.apiUrl + 'GetOrganizationDetails/' + id);
   }

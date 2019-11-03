@@ -15,6 +15,7 @@
       <p class="ion-text-wrap"><strong>Reason for visit:</strong> {{item.reason}}</p>
       <ion-icon slot="start" name="calendar" (click)="AddToCalendar(item)" color="primary"></ion-icon>
       <ion-icon slot="End" name="eye" (click)="ViewDetails(item.id)" color="primary"></ion-icon>
+      <ion-icon slot="End" name="close" (click)="CancelAppointment(item.id)" color="danger"></ion-icon>
     </ion-label>
     </ion-item>
     

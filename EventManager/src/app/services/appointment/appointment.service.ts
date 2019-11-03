@@ -40,4 +40,8 @@ export class AppointmentService {
   GetRejectedAppointmentByUserId(id: number): Observable<AppointmentDetails[]> {
     return this.htpp.get<AppointmentDetails[]>(this.apiurl + 'GetRejectedAppointmentByUserId/' + id);
   }
+
+  RequestAppointmentCancellation(id: number): Observable<number> {
+    return this.htpp.get<number>(this.apiurl + 'RequestAppointmentCancellation/' + id);
+  }
 }
