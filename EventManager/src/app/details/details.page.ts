@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { Calendar } from '@ionic-native/calendar/ngx';
-import { Platform } from '@ionic/angular';
+import { Platform, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-details',
@@ -41,7 +41,8 @@ export class DetailsPage implements OnInit {
     private typeOfServiceService: TypeOfServiceService,
     private storage: Storage,
     private calendar: Calendar,
-    private plt: Platform ) { }
+    private plt: Platform,
+    private alertController: AlertController ) { }
 
   ngOnInit() {
     this.storage.get('UserId').then((val) => {
@@ -76,11 +77,37 @@ export class DetailsPage implements OnInit {
 
   AddToCalendar(item: Appointment){
     this.plt.ready().then(() => {
-      let date = new Date();
-      let options = { calendarId: 1, calendarName: '', url: '', firstReminderMinutes: 15 };
+      const options = { calendarId: 1, calendarName: '', url: '', firstReminderMinutes: 15 };
       this.calendar.createEventInteractivelyWithOptions(item.ticketNumber,item.reason,item.ticketNumber,item.date,item.date,options)
       console.log('add to calendar');
-    })
-    
+    });
   }
+
+  CancelAppointment(id: number) {
+    this.appointmentService.RequestAppointmentCancellation(id).subscribe(r => {
+      if ( r === 1 ) {
+        this.AppointmentCancelled();
+      } else {
+        this.AppointmentCancelledunsuccessful();
+      }
+    });
+  }
+
+  async AppointmentCancelled() {
+    const alert = await this.alertController.create({
+      header: 'Appointment cancellation Request',
+      message: 'Appointment cancellation Request was sent through succesfully'
+    });
+
+    await alert.present();
+  }
+  async AppointmentCancelledunsuccessful() {
+    const alert = await this.alertController.create({
+      header: 'Appointment cancellation Request',
+      message: 'Appointment cancellation Request was not sent through succesfully'
+    });
+
+    await alert.present();
+  }
+
 }

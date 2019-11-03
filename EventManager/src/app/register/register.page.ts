@@ -20,7 +20,9 @@ export class RegisterPage implements OnInit {
     birthDate: undefined,
     username: '',
     password: '',
-    isVerified: false
+    isVerified: false,
+    isActive: false,
+    code: ''
   };
 
   constructor(

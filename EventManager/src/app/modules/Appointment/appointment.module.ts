@@ -11,6 +11,7 @@ export class Appointment {
     organizationId?: number;
     userId?: number;
     consultantId?: number;
+    time: string;
 
     user?: User;
     consultant?: Consultant;
