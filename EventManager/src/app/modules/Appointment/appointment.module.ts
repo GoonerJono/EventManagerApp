@@ -6,10 +6,12 @@ export class Appointment {
     id?: number;
     ticketNumber?: string;
     date?: Date;
+    reason?: string;
     typeOfServiceId?: number;
     organizationId?: number;
     userId?: number;
     consultantId?: number;
+    time: string;
 
     user?: User;
     consultant?: Consultant;

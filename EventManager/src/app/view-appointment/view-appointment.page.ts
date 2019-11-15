@@ -1,18 +1,8 @@
 import { AppointmentDetails } from './../modules/Appointment/appointmentDetails.module';
-import { Consultant } from './../modules/Consultant/consultant.module';
-import { TypeOfService } from './../modules/TypeOfService/typeOfService.module';
-import { Organisation } from './../modules/Organization/organisation.module';
-import { User } from 'src/app/modules/User/user.module';
-import { ConsultantService } from './../services/consultant/consultant.service';
-import { OrganisationService } from './../services/Organisation/organisation.service';
-import { Appointment } from './../modules/Appointment/appointment.module';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../services/user/user.service';
 import { AppointmentService } from '../services/appointment/appointment.service';
-import { TypeOfServiceService } from '../services/typeOfService/type-of-service.service';
-import { unescapeIdentifier } from '@angular/compiler';
-import { ObjectUnsubscribedError } from 'rxjs';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-view-appointment',
@@ -26,6 +16,7 @@ export class ViewAppointmentPage implements OnInit {
     id: undefined,
     ticketNumber: '',
     date: undefined,
+    reason:'',
     typeOfServiceName: '',
     organizationName: '',
     userNameSurname: '',
@@ -36,11 +27,13 @@ export class ViewAppointmentPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private appointmentService: AppointmentService,
-    private router: Router
+    private router: Router,
+    private storage: Storage
   ) {}
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.storage.set('AppointmentId', this.id);
     this.appointmentService.GetAppointmentDetails(this.id).subscribe(app => {
      this.appointmentDetails = app;
      console.log(this.appointmentDetails);
@@ -51,6 +44,12 @@ export class ViewAppointmentPage implements OnInit {
 
   ViewOrganizationLocation(organisationid: number) {
     this.router.navigate(['view-organisation', { id: organisationid }]);
+  }
+  Back() {
+    this.storage.get('UserId').then((val) => {
+      this.storage.remove('AppointmentId');
+      this.router.navigate(['details', {id: val}]);
+    });
   }
 
 }

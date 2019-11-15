@@ -15,8 +15,8 @@ const httpOptions = {
 })
 export class AppointmentService {
 
-    apiUrl2 = 'http://dynamicprogrammers.co.za/api/Appointment/'
-    apiurl = 'https://localhost:44346/api/Appointment/';
+    apiurl = 'http://dynamicprogrammers.co.za/asp/api/Appointment/';
+    apiurlTest = 'https://localhost:44346/api/Appointment/';
 
 
   constructor(private htpp: HttpClient) { }
@@ -35,5 +35,13 @@ export class AppointmentService {
 
   GetAppointmentDetails(id: number): Observable<AppointmentDetails> {
     return this.htpp.get<AppointmentDetails>(this.apiurl + 'GetAppointmentDetails/' + id);
+  }
+
+  GetRejectedAppointmentByUserId(id: number): Observable<AppointmentDetails[]> {
+    return this.htpp.get<AppointmentDetails[]>(this.apiurl + 'GetRejectedAppointmentByUserId/' + id);
+  }
+
+  RequestAppointmentCancellation(id: number): Observable<number> {
+    return this.htpp.get<number>(this.apiurl + 'RequestAppointmentCancellation/' + id);
   }
 }

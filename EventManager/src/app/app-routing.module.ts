@@ -8,6 +8,9 @@ const routes: Routes = [
   { path: 'details', loadChildren: './details/details.module#DetailsPageModule' },  { path: 'create-appointment', loadChildren: './create-appointment/create-appointment.module#CreateAppointmentPageModule' },
   { path: 'view-appointment', loadChildren: './view-appointment/view-appointment.module#ViewAppointmentPageModule' },
   { path: 'view-organisation', loadChildren: './view-organisation/view-organisation.module#ViewOrganisationPageModule' },
+  { path: 'view-directions', loadChildren: './view-directions/view-directions.module#ViewDirectionsPageModule' },
+  { path: 'cancelled-tickets', loadChildren: './cancelled-tickets/cancelled-tickets.module#CancelledTicketsPageModule' },
+  { path: 'edit-user', loadChildren: './edit-user/edit-user.module#EditUserPageModule' },
 
 
 ];

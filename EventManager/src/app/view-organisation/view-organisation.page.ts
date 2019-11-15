@@ -1,11 +1,9 @@
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { Organisation } from './../modules/Organization/organisation.module';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrganisationService } from '../services/Organisation/organisation.service';
-import { Platform } from '@ionic/angular';
-
-declare var google;
+import { OrganisationDetails } from '../modules/Organization/organisationDetails.module';
+import { Storage } from '@ionic/storage';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-view-organisation',
@@ -14,27 +12,33 @@ declare var google;
 })
 export class ViewOrganisationPage implements OnInit {
 
-  @ViewChild('map', {static: false}) mapElement: ElementRef;
-  map: any;
-  latLng: any;
-  latitude: any;
-  longitude: any;
-
   id: number;
-  organisation: Organisation = {
-    id: undefined,
+  organisation: OrganisationDetails = {
+    organizationId: undefined,
     address: '',
+    city: '',
+    closeTime: undefined,
     email: '',
-    hours: '',
-    name: ''
+    isVerified: true,
+    latitude: '',
+    longitude: '',
+    name: '',
+    openTime: undefined,
+    organizationEndDay: '',
+    organizationStartDay: '',
+    phoneNumber: '',
+    province: '',
+    registeredDate: undefined,
+    suburb: '',
+    typeOfServiceId: undefined
   };
 
   constructor(
     private route: ActivatedRoute,
     private organizationService: OrganisationService,
     private router: Router,
-    private plt: Platform,
-    private geolocation: Geolocation) { }
+    private storage: Storage,
+    private callNumber: CallNumber) { }
 
   ngOnInit() {
 
@@ -45,32 +49,22 @@ export class ViewOrganisationPage implements OnInit {
       return this.organisation;
     });
 
-    this.plt.ready().then(() => {
-      const mapOptions = {
-        zoom: 5,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: false,
-        mapMarker : new google.maps.Marker()
-      };
 
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+  }
 
-      this.geolocation.getCurrentPosition().then(pos => {
-        this.latitude = pos.coords.latitude;
-        this.longitude = pos.coords.longitude
-        this.latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-        const infoWindow = new google.maps.InfoWindow;
-        const curPos = {
-          lat: this.latitude,
-          lng: this.longitude
-        };
-        infoWindow.setPosition(curPos);
-        infoWindow.open(this.map);
-        this.map.setCenter(this.latLng);
-        this.map.setZoom(15);
-      });
+  viewDirections(organisationId: number) {
+    this.router.navigate(['view-directions', { id: organisationId }]);
+  }
+  Back() {
+    this.storage.get('AppointmentId').then((val) => {
+      console.log('Appointment id from storage: ', val);
+      this.router.navigate(['view-appointment', { id: val}]);
     });
+  }
+
+  Call(phoneNumber: number){ 
+    this.callNumber.callNumber(phoneNumber.toString(),true)
+    .then(res => console.log('lanched dialer!',res))
+    .catch(err => console.log('Error launching dialer',err))
   }
 }
