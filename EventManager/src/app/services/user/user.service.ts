@@ -30,7 +30,7 @@ export class UserService {
   }
 
   CreateNewUser(user: User): Observable<number> {
-    return this.http.post<number>(this.apiUrlTest, user, httpOptions2);
+    return this.http.post<number>(this.apiUrl, user, httpOptions);
   }
 
   UpdateUser(user: User): Observable<number> {

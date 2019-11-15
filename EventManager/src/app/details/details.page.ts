@@ -46,7 +46,8 @@ export class DetailsPage implements OnInit {
 
   ngOnInit() {
     this.storage.get('UserId').then((val) => {
-      if(val === null){
+      console.log(val)
+      if(val !== null){
         this.appointmentService.GetAppointmentByUserId(val).subscribe(app => {
           this.appointment = app;
           console.log(this.appointment);

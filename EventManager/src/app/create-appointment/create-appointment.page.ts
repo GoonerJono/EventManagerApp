@@ -1,3 +1,4 @@
+import { Storage } from '@ionic/storage';
 import { Organisation } from './../modules/Organization/organisation.module';
 import { Consultant } from './../modules/Consultant/consultant.module';
 import { ConsultantService } from './../services/consultant/consultant.service';
@@ -50,11 +51,14 @@ province: Province[];
     private consultantService: ConsultantService,
     private route: ActivatedRoute,
     private alertController: AlertController,
-    private provinceService: ProvinceService
+    private provinceService: ProvinceService,
+    private storage: Storage
     ) { }
 
   ngOnInit() {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.storage.get('UserId').then((val) => {
+      console.log(val);
+    this.id = val;})
     this.typeOfServiceService.GetTypeOfServices().subscribe(
       TOS => {this.typeOfService = TOS; }
     );
@@ -68,6 +72,7 @@ province: Province[];
 
   CreateAppointment(appointment) {
     appointment.userId = this.id;
+    console.log(this.id);
     this.appointmentService.CreateNewAppointment(appointment).subscribe(
       create => {if ( create === 1 ) {
         this.AppointmentCreated();
